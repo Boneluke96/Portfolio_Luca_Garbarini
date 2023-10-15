@@ -49,24 +49,43 @@ window.addEventListener('scroll', scrollUp);
 
 
 
-//dark theme
+//dark-mode
 let themeButton = document.getElementById('theme-button');
 let theme = localStorage.getItem('theme');
 
-theme && document.body.classList.add(theme);
+// Funzione per impostare l'icona del tema iniziale
+function setInitialThemeIcon(isDarkMode) {
+  if (isDarkMode) {
+    themeButton.classList.remove('fa-moon');
+    themeButton.classList.add('fa-sun');
+  } else {
+    themeButton.classList.remove('fa-sun');
+    themeButton.classList.add('fa-moon');
+  }
+}
 
-handleTheme = () => {
-    document.body.classList.toggle('dark-mode');
-    
-    if(document.body.classList.contains('dark-mode')){
-        localStorage.setItem('theme', 'dark-mode');
-        themeButton.classList.remove('fa-moon');
-        themeButton.classList.add('fa-sun');
-    }else{
-        localStorage.removeItem('theme');
-        themeButton.classList.remove('fa-sun');
-        themeButton.classList.add('fa-moon');
-    }
+// Verifica se il tema è stato precedentemente impostato
+if (theme === 'dark-mode') {
+  document.body.classList.add('dark-mode');
+  setInitialThemeIcon(true);
+} else {
+  setInitialThemeIcon(false);
+}
+
+function handleTheme() {
+  document.body.classList.toggle('dark-mode');
+  const isDarkMode = document.body.classList.contains('dark-mode');
+
+  // Aggiorna l'immagine dell'icona del tema dopo il toggle
+  if (isDarkMode) {
+    localStorage.setItem('theme', 'dark-mode');
+    themeButton.classList.remove('fa-moon');
+    themeButton.classList.add('fa-sun');
+  } else {
+    localStorage.removeItem('theme');
+    themeButton.classList.remove('fa-sun');
+    themeButton.classList.add('fa-moon');
+  }
 }
 
 themeButton.addEventListener('click', handleTheme);

@@ -42,6 +42,13 @@ body{
     transform: scale(1.1);
 }
 
+@media only screen and (max-width: 993px){
+    .change-theme{
+        position: relative;
+        margin-left: 10px;
+    }
+}
+
 /* navbar */
 .navbar-brand{
     color: var(--colorPrimary);
