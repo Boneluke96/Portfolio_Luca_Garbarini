@@ -7,7 +7,7 @@ let sendEmail = (e) => {
 
     emailjs.sendForm('service_rbev6y6', 'template_oy2uq2p', '#contact-form', 'L91b_8kNqziTtqhhf')
         .then(() => {
-            contactMessage.textContent = 'Messaggio inviato con successo!';
+            contactMessage.textContent = 'message sent successfully!';
 
             setTimeout(() => {
                 contactMessage.textContent = '';
@@ -16,7 +16,7 @@ let sendEmail = (e) => {
             contactForm.reset();
         })
         .catch((error) => {
-            contactMessage.textContent = 'Messaggio non inviato (errore del servizio)';
+            contactMessage.textContent = 'Message not sent (service error)';
             console.error('Errore EmailJS:', error);
         });
 };
